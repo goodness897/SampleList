@@ -22,7 +22,7 @@ public class ChoiceListActivity extends AppCompatActivity {
 
         listView = (ListView)findViewById(R.id.listView2);
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(mAdapter);
 
         Button btn = (Button) findViewById(R.id.btn_delete);
