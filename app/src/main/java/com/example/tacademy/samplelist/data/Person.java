@@ -11,6 +11,7 @@ public class Person {
     private Drawable photo;
 
     public Person() {
+
     }
 
     public Person(String name, int age, Drawable photo) {
