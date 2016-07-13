@@ -21,6 +21,8 @@ public class ChoiceListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choice_list);
 
         listView = (ListView)findViewById(R.id.listView2);
+        // View headerView = getLayoutInflater().inflate(R.layout.header_list_item, listView); // 이건 절대 안됌. 그럼 listView안에 들어가기 때문에.
+
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(mAdapter);
