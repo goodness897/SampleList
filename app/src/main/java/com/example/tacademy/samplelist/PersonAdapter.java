@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-07-13.
  */
-public class PersonAdapter extends BaseAdapter {
+public class PersonAdapter extends BaseAdapter implements PersonView.OnImageClickListener{
 
     List<Person> items = new ArrayList<>();
 
@@ -51,8 +51,30 @@ public class PersonAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         PersonView view;
-        view = new PersonView(parent.getContext());
+        if (convertView == null) {
+            view = new PersonView(parent.getContext());
+            view.setOnImageClickListener(this);
+
+        } else {
+            view = (PersonView) convertView;
+        }
+
         view.setPerson(items.get(position));
         return view;
+    }
+    public interface OnAdapterImageClickListener {
+        public void onAdapterImageClick(PersonAdapter adapter, PersonView view, Person person);
+    }
+
+    OnAdapterImageClickListener mAdapterListener;
+    public void setOnAdapterImageClickListener(OnAdapterImageClickListener listener) {
+        mAdapterListener = listener;
+    }
+
+    @Override
+    public void onImageClick(PersonView view, Person person) {
+        if(mAdapterListener != null) {
+            mAdapterListener.onAdapterImageClick(this, view, person);
+        }
     }
 }
