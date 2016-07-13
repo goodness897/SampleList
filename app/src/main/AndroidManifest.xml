@@ -19,7 +19,7 @@
             android:name=".SimpleListActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".ChoiceListActivity">
+        <activity android:name=".ChoiceListActivity" android:exported="true">
         </activity>
     </application>
 
