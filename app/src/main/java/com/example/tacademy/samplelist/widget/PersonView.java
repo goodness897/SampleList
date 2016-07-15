@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,7 +17,7 @@ import com.example.tacademy.samplelist.data.Person;
 /**
  * Created by Tacademy on 2016-07-13.
  */
-public class PersonView extends RelativeLayout {
+public class PersonView extends RelativeLayout implements Checkable {
 
     public PersonView(Context context) {
         this(context, null);
@@ -27,8 +28,41 @@ public class PersonView extends RelativeLayout {
         init(attrs);
     }
 
-    ImageView photoView;
+    ImageView photoView,checkView,selectView;
     TextView nameView, ageView;
+
+    boolean isChecked;
+
+    @Override
+    public void setChecked(boolean checked) {
+        if(isChecked != checked) {
+            isChecked = checked;
+            drawCheck();
+        }
+
+    }
+
+    private void drawCheck() {
+        if(isChecked) {
+            checkView.setImageResource(android.R.drawable.checkbox_on_background);
+            selectView.setVisibility(View.VISIBLE);
+        } else {
+            checkView.setImageResource(android.R.drawable.checkbox_off_background);
+            selectView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    @Override
+    public void toggle() {
+        setChecked(isChecked);
+
+
+    }
 
     public interface OnImageClickListener {
         public void onImageClick(PersonView view, Person person);
@@ -45,6 +79,8 @@ public class PersonView extends RelativeLayout {
         inflater.inflate(R.layout.view_person, this);*/
         inflate(getContext(), R.layout.view_person, this); // 위 2줄과 같은 표현
         photoView = (ImageView) findViewById(R.id.image_photo);
+        checkView = (ImageView) findViewById(R.id.image_check);
+        selectView = (ImageView) findViewById(R.id.image_select);
         nameView = (TextView) findViewById(R.id.text_name);
         ageView = (TextView) findViewById(R.id.text_age);
         photoView.setOnClickListener(new OnClickListener() {

@@ -28,6 +28,7 @@ public class CustomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_list);
         listView = (ListView) findViewById(R.id.listView3);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         View headerView = getLayoutInflater().inflate(R.layout.header_list_item, listView, false);
         inputView = (EditText)headerView.findViewById(R.id.edit_input);
         Button btn = (Button)headerView.findViewById(R.id.btn_search);
@@ -57,11 +58,8 @@ public class CustomListActivity extends AppCompatActivity {
         });
         listView.addHeaderView(headerView, null, false);
         listView.setAdapter(mAdapter);
-
-
         //drawables = new Drawable[8];
         //drawables[0] = ContextCompat.getDrawable(this, R.drawable.sample_0);
-
         initData();
     }
 
